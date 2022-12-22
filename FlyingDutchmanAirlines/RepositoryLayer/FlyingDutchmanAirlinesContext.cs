@@ -28,7 +28,7 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //var path = Path.Combine( new string[] { Directory.GetCurrentDirectory(), "FlyingDtuchmanV1.db" } );
-            //optionsBuilder.UseSqlite($"Filename=C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDtuchmanV1.db");
+            optionsBuilder.UseSqlite($"Filename=C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDtuchmanV1.db");
             //optionsBuilder.UseSqlite($"Filename=:memory:");
         }
     }

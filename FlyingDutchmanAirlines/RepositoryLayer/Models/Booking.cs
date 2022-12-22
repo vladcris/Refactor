@@ -11,11 +11,13 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Models
     {
         [Key]
         public int BookingId { get; set; }
+
         [ForeignKey("FlightNumberId")]
         public int FlightNumberId { get; set; }
         public Flight Flight { get; set; }
+
         [ForeignKey("CustomerId")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         public Customer Customer { get; set; }
 
     }

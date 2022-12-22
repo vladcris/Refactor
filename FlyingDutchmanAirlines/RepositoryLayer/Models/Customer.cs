@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FlyingDutchmanAirlines.RepositoryLayer.Models.Internal;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer.Models
 {
@@ -19,5 +20,14 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Models
             Booking = new HashSet<Booking>();
             Name = name;
         }
+
+        public static bool operator == (Customer x, Customer y)
+        {
+            CustomerEqualityComparer comparer = new CustomerEqualityComparer();
+            return comparer.Equals(x, y);
+        }
+
+        public static bool operator != (Customer x, Customer y) => !(x == y);
+
     }
 }

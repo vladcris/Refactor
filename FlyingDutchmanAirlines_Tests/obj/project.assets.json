@@ -7954,11 +7954,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines_Tests\\FlyingDutchmanAirlines_Tests.csproj",
+      "projectUniqueName": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines_Tests\\FlyingDutchmanAirlines_Tests.csproj",
       "projectName": "FlyingDutchmanAirlines_Tests",
-      "projectPath": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines_Tests\\FlyingDutchmanAirlines_Tests.csproj",
+      "projectPath": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines_Tests\\FlyingDutchmanAirlines_Tests.csproj",
       "packagesPath": "C:\\Users\\const\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines_Tests\\obj\\",
+      "outputPath": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines_Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7980,8 +7980,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj": {
-              "projectPath": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj"
+            "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj": {
+              "projectPath": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj"
             }
           }
         }

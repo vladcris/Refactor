@@ -11,6 +11,6 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Models
         [Key]
         public int AirportId { get; set; }
         public string City { get; set; }
-        public int IATA { get; set; }
+        public string IATA { get; set; }
     }
 }

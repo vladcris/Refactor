@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FlyingDutchmanAirlines.Exceptions;
 using FlyingDutchmanAirlines.RepositoryLayer.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer.Repositories
 {
@@ -28,9 +30,17 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Repositories
             {
                 return false;
             }
-            
-
             return true;
+        }
+
+        public async Task<Customer> GetCustomerByName(string name)
+        {
+            if(IsInvalidCustomerName(name)) {
+                throw new CustomerNotFoundException();
+            }
+
+            return await _dbContext.Customers.FirstOrDefaultAsync(c => c.Name == name) 
+                    ?? throw new CustomerNotFoundException();
         }
 
         private bool IsInvalidCustomerName(string name)
