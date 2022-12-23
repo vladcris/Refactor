@@ -39,26 +39,24 @@ namespace FlyingDutchmanAirlines_Tests
         [DataRow(1,1,2)]
         public async Task GetFlight_Success(int flightNumber, int origin, int destination)
         {
-            var flight = await _repository!.GetFlightByFlightNumber(flightNumber, origin, destination);
+            var flight = await _repository!.GetFlightByFlightNumber(flightNumber);
 
             Assert.IsNotNull(flight);
             Assert.AreEqual(1, flight.FlightNumber);
-            Assert.AreEqual(1, flight.Origin);
-            Assert.AreEqual(2, flight.Destination);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public async Task GetFlightByFlightNumber_Failure_InvalidOrigin()
         {
-            await _repository.GetFlightByFlightNumber(1,-1,1);
+            await _repository!.GetFlightByFlightNumber(1);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public async Task GetFlightByFlightNumber_Failure_InvalidDestination()
         {
-            await _repository.GetFlightByFlightNumber(1,1,-1);
+            await _repository!.GetFlightByFlightNumber(1);
         }
     }
 }

@@ -49,7 +49,7 @@ namespace FlyingDutchmanAirlines_Tests.TestResults
         [TestMethod]
         public async Task GetAirportById_Success()
         {
-            Airport airport = await _repository.GetAirportById(1);
+            Airport airport = await _repository!.GetAirportById(1);
 
             Assert.IsNotNull(airport);
             Assert.AreEqual(1, airport.AirportId);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using FlyingDutchmanAirlines.Exceptions;
 using FlyingDutchmanAirlines.RepositoryLayer.Models;
@@ -11,6 +12,11 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Repositories
     public class CustomerRepository
     {
         private readonly FlyingDutchmanAirlinesContext _dbContext;
+        public CustomerRepository()
+        {
+            if(Assembly.GetExecutingAssembly().FullName == Assembly.GetCallingAssembly().FullName)
+                throw new Exception("this constructor should only be used for testing");
+        }
         public CustomerRepository(FlyingDutchmanAirlinesContext dbContext)
         {
             _dbContext = dbContext;
@@ -33,7 +39,7 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Repositories
             return true;
         }
 
-        public async Task<Customer> GetCustomerByName(string name)
+        public virtual async Task<Customer> GetCustomerByName(string name)
         {
             if(IsInvalidCustomerName(name)) {
                 throw new CustomerNotFoundException();
