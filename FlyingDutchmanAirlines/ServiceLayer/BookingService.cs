@@ -39,7 +39,7 @@ namespace FlyingDutchmanAirlines.ServiceLayer
                 return (true, null);
 
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 return (false, ex);
             }

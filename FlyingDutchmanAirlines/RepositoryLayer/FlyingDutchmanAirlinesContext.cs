@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FlyingDutchmanAirlines.RepositoryLayer.Models;
+using FlyingDutchmanAirlines.RepositoryLayer.Models.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlyingDutchmanAirlines.RepositoryLayer
@@ -27,9 +28,16 @@ namespace FlyingDutchmanAirlines.RepositoryLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
             //var path = Path.Combine( new string[] { Directory.GetCurrentDirectory(), "FlyingDtuchmanV1.db" } );
             //optionsBuilder.UseSqlite($"Filename=C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDtuchmanV1.db");
             //optionsBuilder.UseSqlite($"Filename=:memory:");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AirportSeed());
+            modelBuilder.ApplyConfiguration(new FlightSeed());
         }
     }
 }

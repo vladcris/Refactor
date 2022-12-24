@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlyingDutchmanAirlines.Migrations
 {
     [DbContext(typeof(FlyingDutchmanAirlinesContext))]
-    [Migration("20221216101335_InitialCreate")]
+    [Migration("20221224113650_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -29,12 +29,26 @@ namespace FlyingDutchmanAirlines.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("IATA")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("IATA")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("AirportId");
 
                     b.ToTable("Airports");
+
+                    b.HasData(
+                        new
+                        {
+                            AirportId = 1,
+                            City = "Groningen",
+                            IATA = "GRQ"
+                        },
+                        new
+                        {
+                            AirportId = 2,
+                            City = "London",
+                            IATA = "LHR"
+                        });
                 });
 
             modelBuilder.Entity("FlyingDutchmanAirlines.RepositoryLayer.Models.Booking", b =>
@@ -43,7 +57,7 @@ namespace FlyingDutchmanAirlines.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("FlightNumber")
@@ -81,12 +95,6 @@ namespace FlyingDutchmanAirlines.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AirportDestinationAirportId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("AirportOriginAirportId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Destination")
                         .HasColumnType("INTEGER");
 
@@ -95,20 +103,28 @@ namespace FlyingDutchmanAirlines.Migrations
 
                     b.HasKey("FlightNumber");
 
-                    b.HasIndex("AirportDestinationAirportId");
-
-                    b.HasIndex("AirportOriginAirportId");
-
                     b.ToTable("Flights");
+
+                    b.HasData(
+                        new
+                        {
+                            FlightNumber = 1,
+                            Destination = 2,
+                            Origin = 1
+                        },
+                        new
+                        {
+                            FlightNumber = 2,
+                            Destination = 1,
+                            Origin = 2
+                        });
                 });
 
             modelBuilder.Entity("FlyingDutchmanAirlines.RepositoryLayer.Models.Booking", b =>
                 {
                     b.HasOne("FlyingDutchmanAirlines.RepositoryLayer.Models.Customer", "Customer")
                         .WithMany("Booking")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("FlyingDutchmanAirlines.RepositoryLayer.Models.Flight", "Flight")
                         .WithMany()
@@ -117,21 +133,6 @@ namespace FlyingDutchmanAirlines.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Flight");
-                });
-
-            modelBuilder.Entity("FlyingDutchmanAirlines.RepositoryLayer.Models.Flight", b =>
-                {
-                    b.HasOne("FlyingDutchmanAirlines.RepositoryLayer.Models.Airport", "AirportDestination")
-                        .WithMany()
-                        .HasForeignKey("AirportDestinationAirportId");
-
-                    b.HasOne("FlyingDutchmanAirlines.RepositoryLayer.Models.Airport", "AirportOrigin")
-                        .WithMany()
-                        .HasForeignKey("AirportOriginAirportId");
-
-                    b.Navigation("AirportDestination");
-
-                    b.Navigation("AirportOrigin");
                 });
 
             modelBuilder.Entity("FlyingDutchmanAirlines.RepositoryLayer.Models.Customer", b =>

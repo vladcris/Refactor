@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj": {}
+    "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj": {}
   },
   "projects": {
-    "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj": {
+    "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj",
+        "projectUniqueName": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj",
         "projectName": "FlyingDutchmanAirlines",
-        "projectPath": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj",
+        "projectPath": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\FlyingDutchmanAirlines.csproj",
         "packagesPath": "C:\\Users\\const\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\obj\\",
+        "outputPath": "C:\\Users\\const\\source\\repos\\CodeLikeAProInC#\\Refactor\\FlyingDutchmanAirlines\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,6 +54,10 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
             }
           },
           "imports": [

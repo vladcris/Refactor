@@ -11,14 +11,12 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Models
     {
         [Key]
         public int FlightNumber { get; set; }
-        [ForeignKey("Origin")]
+        [ForeignKey(nameof(Airport))]
         public int Origin { get; set; }
-        public Airport AirportOrigin { get; set; }
 
-        [ForeignKey("Destination")]
+        [ForeignKey(nameof(Airport))]
         public int Destination { get; set; }
-        public Airport AirportDestination { get; set; }
-
+   
 
     }
 }

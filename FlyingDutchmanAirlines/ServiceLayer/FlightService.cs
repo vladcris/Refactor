@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using FlyingDutchmanAirlines.Exceptions;
 using FlyingDutchmanAirlines.RepositoryLayer.Models;
@@ -18,6 +19,12 @@ namespace FlyingDutchmanAirlines.ServiceLayer
         {
             _flightRepository = flightRepository;
             _airportRepository = airportRepository;
+        }
+
+        public FlightService()
+        {
+            if(Assembly.GetExecutingAssembly().FullName == Assembly.GetCallingAssembly().FullName)
+                throw new Exception("this constructor should only be used for testing");
         }
 
         public virtual async IAsyncEnumerable<FlightView> GetFlights()

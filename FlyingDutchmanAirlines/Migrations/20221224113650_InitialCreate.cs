@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FlyingDutchmanAirlines.Migrations
 {
     /// <inheritdoc />
@@ -17,7 +19,7 @@ namespace FlyingDutchmanAirlines.Migrations
                     AirportId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     City = table.Column<string>(type: "TEXT", nullable: true),
-                    IATA = table.Column<int>(type: "INTEGER", nullable: false)
+                    IATA = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -44,23 +46,11 @@ namespace FlyingDutchmanAirlines.Migrations
                     FlightNumber = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Origin = table.Column<int>(type: "INTEGER", nullable: false),
-                    AirportOriginAirportId = table.Column<int>(type: "INTEGER", nullable: true),
-                    Destination = table.Column<int>(type: "INTEGER", nullable: false),
-                    AirportDestinationAirportId = table.Column<int>(type: "INTEGER", nullable: true)
+                    Destination = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Flights", x => x.FlightNumber);
-                    table.ForeignKey(
-                        name: "FK_Flights_Airports_AirportDestinationAirportId",
-                        column: x => x.AirportDestinationAirportId,
-                        principalTable: "Airports",
-                        principalColumn: "AirportId");
-                    table.ForeignKey(
-                        name: "FK_Flights_Airports_AirportOriginAirportId",
-                        column: x => x.AirportOriginAirportId,
-                        principalTable: "Airports",
-                        principalColumn: "AirportId");
                 });
 
             migrationBuilder.CreateTable(
@@ -71,7 +61,7 @@ namespace FlyingDutchmanAirlines.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     FlightNumberId = table.Column<int>(type: "INTEGER", nullable: false),
                     FlightNumber = table.Column<int>(type: "INTEGER", nullable: true),
-                    CustomerId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CustomerId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -80,13 +70,30 @@ namespace FlyingDutchmanAirlines.Migrations
                         name: "FK_Bokings_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CustomerId");
                     table.ForeignKey(
                         name: "FK_Bokings_Flights_FlightNumber",
                         column: x => x.FlightNumber,
                         principalTable: "Flights",
                         principalColumn: "FlightNumber");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Airports",
+                columns: new[] { "AirportId", "City", "IATA" },
+                values: new object[,]
+                {
+                    { 1, "Groningen", "GRQ" },
+                    { 2, "London", "LHR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Flights",
+                columns: new[] { "FlightNumber", "Destination", "Origin" },
+                values: new object[,]
+                {
+                    { 1, 2, 1 },
+                    { 2, 1, 2 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -98,21 +105,14 @@ namespace FlyingDutchmanAirlines.Migrations
                 name: "IX_Bokings_FlightNumber",
                 table: "Bokings",
                 column: "FlightNumber");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Flights_AirportDestinationAirportId",
-                table: "Flights",
-                column: "AirportDestinationAirportId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Flights_AirportOriginAirportId",
-                table: "Flights",
-                column: "AirportOriginAirportId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Airports");
+
             migrationBuilder.DropTable(
                 name: "Bokings");
 
@@ -121,9 +121,6 @@ namespace FlyingDutchmanAirlines.Migrations
 
             migrationBuilder.DropTable(
                 name: "Flights");
-
-            migrationBuilder.DropTable(
-                name: "Airports");
         }
     }
 }
