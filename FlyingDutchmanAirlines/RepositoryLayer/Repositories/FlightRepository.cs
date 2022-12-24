@@ -32,5 +32,16 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Repositories
             return await _dbContext.Flights.FirstOrDefaultAsync(f => f.FlightNumber == flightNumber)
                         ?? throw new FlightNotFoundException();
         }
+
+        public virtual Queue<Flight> GetFlights()
+        {
+            Queue<Flight> flights = new Queue<Flight>();
+            foreach (var flight in _dbContext.Flights)
+            {
+                flights.Enqueue(flight);
+            }
+
+            return flights;
+        }
     }
 }

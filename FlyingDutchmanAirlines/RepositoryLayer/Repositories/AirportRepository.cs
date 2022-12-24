@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using FlyingDutchmanAirlines.Exceptions;
 using FlyingDutchmanAirlines.RepositoryLayer.Models;
@@ -12,12 +13,17 @@ namespace FlyingDutchmanAirlines.RepositoryLayer.Repositories
     {
         private readonly FlyingDutchmanAirlinesContext _dbContext;
 
+        public AirportRepository()
+        {
+            if(Assembly.GetExecutingAssembly().FullName == Assembly.GetCallingAssembly().FullName)
+                throw new Exception("this constructor should only be used for testing");
+        }
         public AirportRepository(FlyingDutchmanAirlinesContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<Airport> GetAirportById(int airportId)
+        public virtual async Task<Airport> GetAirportById(int airportId)
         {
             if(airportId <= 0)
                 throw new ArgumentException("Invalid argument");
